@@ -22,4 +22,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: esp32-binaries
-          path: "**/build/**/*.bin"
+          path: "**/pet-esp32/**/*.bin"
