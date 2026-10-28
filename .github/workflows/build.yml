@@ -1,0 +1,25 @@
+name: Build ESP32 Firmware
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Install ESP-IDF and Build
+        uses: espressif/install-esp-idf-action@v1
+        with:
+          version: 'latest' # Change to a specific version (e.g., 'v5.3') if the repo requires it
+          path: 'esp-idf'
+
+      - name: Upload Binary Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: esp32-binaries
+          path: "**/build/**/*.bin"
